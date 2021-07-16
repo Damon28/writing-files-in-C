@@ -5,23 +5,20 @@
 
 int main()
 {
-    printf("\n===Writing Files in C===\n\n");
-    printf("For fopen(): 1st param is the name of the file; 2nd param is the mode\nfopen(\"<file>\", <mode>)\n\n");
-    printf("MODES:\nr - read\nw - write (overwrites)\na - append");
-    FILE * fpointer = fopen("employees.txt", "w"); /*fpointer is a pointer to the mem addr of the file (employees.txt)*/
+    printf("\n===Reading Files in C===\n\n");
 
-    fprintf(fpointer, "Jim, Salesman\nPam, Receptionist\nOscar, Accounting"); /*NOTE: fprintf() takes 2 parameters*/
+    char line[255]; /*NOTE: Variable created*/
 
-    fclose(fpointer);
-    printf("\n\nNOTE: always use fclose() once done w/ the file.\n\n");
+    FILE * fpointer = fopen("employees.txt", "r");
 
-    printf("Adding Kelly from customer service to 'employees.txt\n\n'");
-
-    fopen("employees.txt", "a");
-
-    fprintf(fpointer, "\nKelly, Customer Service\n\n");
+    fgets(line, 255, fpointer); /*Reads line by line everytime it's ran */
+    printf("1st line from fgets(): %s\n", line);
+    fgets(line, 255, fpointer); /*Reads the 2nd line*/
+    printf("2nd line from fgets(): %s", line);
 
     fclose(fpointer);
+
+    printf("\n\nfgets takes 3 parameters:\n1. Variable\n2. amount of chars (should match var)\n3. file pointer");
 
 
     return 0;
